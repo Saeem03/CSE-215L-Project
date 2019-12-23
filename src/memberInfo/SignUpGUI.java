@@ -28,7 +28,7 @@ public class SignUpGUI extends JFrame {
 	ButtonGroup uGender = new ButtonGroup();
 	JRadioButton uMale;
 	JRadioButton uFemale;
-		SignUpGUI(){
+	SignUpGUI(){
 			
 			JLabel a = new JLabel("Name :");
 			a.setBounds(50,10,100,30);
@@ -72,13 +72,7 @@ public class SignUpGUI extends JFrame {
 			uAge = new JTextField(10);
 			uAge.setBounds(200, 210 , 200, 30);
 			add(uAge);
-			a = new JLabel("Password :");
-			a.setBounds(50,360,200,30);
-			a.setFont(new Font("Serif", Font.BOLD, 20));
-			add(a);
-			uPassword = new JPasswordField(10);
-			uPassword.setBounds(200,360,200,30);
-			add(uPassword);
+			
 			a = new JLabel("Phone No :");
 			a.setBounds(50,300,200,30);
 			a.setFont(new Font("Serif", Font.BOLD, 20));
@@ -100,12 +94,19 @@ public class SignUpGUI extends JFrame {
 			add(uFemale);
 			uGender.add(uMale);
 			uGender.add(uFemale);
+			a = new JLabel("Password :");
+			a.setBounds(50,360,200,30);
+			a.setFont(new Font("Serif", Font.BOLD, 20));
+			add(a);
+			uPassword = new JPasswordField(10);
+			uPassword.setBounds(200,360,200,30);
+			add(uPassword);
 			JButton b1 = new JButton("SignUp");
 			b1.setBounds(250,500,150,90);
 			b1.setBackground(Color.RED);
 			add(b1);
-			super.setBackground(Color.gray);
 			b1.addActionListener(new SignUpHandler());
+			super.setBackground(Color.gray);
 			setLayout(null);
 			setVisible(true);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -120,7 +121,7 @@ public class SignUpGUI extends JFrame {
 					try{
 						if(!(uName.getText().isEmpty() || uId.getText().isEmpty() || String.valueOf(uPassword.getPassword()).isEmpty() || uAge.getText().isEmpty() || uGender.getElements().nextElement().getText().isEmpty()))
 						{
-							Recording r = new Recording(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()));
+							RecordController r = new RecordController(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()));
 							
 							if(!uFatherName.getText().isEmpty())
 								r.setfName(uFatherName.getText());
@@ -135,15 +136,14 @@ public class SignUpGUI extends JFrame {
 					catch(Exception e1)
 					{
 						e1.printStackTrace();
-						System.out.println("eeeeeeeee");
 					}
 				}
 			}
 
 		}
 
-	public static void main(String[] args) {
-		SignUpGUI x = new SignUpGUI();
-	}
+//	public static void main(String[] args) {
+//		SignUpGUI x = new SignUpGUI();
+//	}
 
 }
