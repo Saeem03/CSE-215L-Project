@@ -1,17 +1,22 @@
 package memberInfo;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import java.security.SecureRandom;
-import memberInfo.SignUpHandler;
 
 
 public class SignUpGUI extends JFrame {
+	Boolean isHuman=false;
 	JTextField uName;
 	JTextField uId;
 	JTextField uFatherName;
@@ -20,6 +25,7 @@ public class SignUpGUI extends JFrame {
 	JTextField uAge;
 	JTextField uPhone;
 	JPasswordField uPassword;
+	ButtonGroup uGender = new ButtonGroup();
 	JRadioButton uMale;
 	JRadioButton uFemale;
 		SignUpGUI(){
@@ -56,14 +62,14 @@ public class SignUpGUI extends JFrame {
 			a.setBounds(50,170,170,30);
 			a.setFont(new Font("Serif", Font.BOLD, 20));
 			add(a);
-			uAddress = new JPasswordField(10);
+			uAddress = new JTextField(10);
 			uAddress.setBounds(200, 170 , 200, 30);
 			add(uAddress);
 			a = new JLabel("Age :");
 			a.setBounds(50,210,200,30);
 			a.setFont(new Font("Serif", Font.BOLD, 20));
 			add(a);
-			uAge = new JPasswordField(10);
+			uAge = new JTextField(10);
 			uAge.setBounds(200, 210 , 200, 30);
 			add(uAge);
 			a = new JLabel("Password :");
@@ -80,9 +86,6 @@ public class SignUpGUI extends JFrame {
 			uPhone = new JTextField("",10);
 			uPhone.setBounds(200,300,200,30);
 			add(uPhone);
-			ButtonGroup g1 = new ButtonGroup();
-			g1.add(uMale);
-			g1.add(uFemale);
 			a = new JLabel("Gender :");
 			a.setBounds(50,250,200,30);
 			a.setFont(new Font("Serif", Font.BOLD, 20));
@@ -95,17 +98,48 @@ public class SignUpGUI extends JFrame {
 			uFemale.setBounds(300,250,120,40);
 			uFemale.setFont(new Font("Serif", Font.BOLD, 20));
 			add(uFemale);
-			RobotCheck x = new RobotCheck( this,50,400,150,50);
+			uGender.add(uMale);
+			uGender.add(uFemale);
 			JButton b1 = new JButton("SignUp");
-			if(b1.getModel().isPressed())
-				System.out.println("Works");;
-			b1.setBounds(150,520,150,30);
+			b1.setBounds(250,500,150,90);
+			b1.setBackground(Color.RED);
 			add(b1);
+			super.setBackground(Color.gray);
 			b1.addActionListener(new SignUpHandler());
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setLayout(null);
 			setVisible(true);
-			setSize(1400,1400);
+			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			setSize(800,700);
+		}
+		public class SignUpHandler implements ActionListener{
+
+			public void actionPerformed(ActionEvent e) {
+				
+				if(e.getActionCommand().equals("SignUp"))
+				{
+					try{
+						if(!(uName.getText().isEmpty() || uId.getText().isEmpty() || String.valueOf(uPassword.getPassword()).isEmpty() || uAge.getText().isEmpty() || uGender.getElements().nextElement().getText().isEmpty()))
+						{
+							Recording r = new Recording(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()));
+							
+							if(!uFatherName.getText().isEmpty())
+								r.setfName(uFatherName.getText());
+							if(!uMotherName.getText().isEmpty())
+								r.setfName(uMotherName.getText());
+							r.Save();
+							System.out.println("File saved");
+						}
+						else throw  new NecessityMeetException();
+						
+					}
+					catch(Exception e1)
+					{
+						e1.printStackTrace();
+						System.out.println("eeeeeeeee");
+					}
+				}
+			}
+
 		}
 
 	public static void main(String[] args) {
