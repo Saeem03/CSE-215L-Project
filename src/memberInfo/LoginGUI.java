@@ -20,7 +20,7 @@ public class LoginGUI extends JFrame{
 	LoginGUI (){
 		super();
 		JLabel a = new JLabel("UserName :");
-		a.setBounds(50,10,100,30);
+		a.setBounds(50,10,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		add(a);
 		uId = new JTextField("",150);
@@ -34,10 +34,15 @@ public class LoginGUI extends JFrame{
 		uPassword.setBounds(200,50,200,30);
 		add(uPassword);
 		JButton b1 = new JButton("Login");
-		b1.setBounds(280,100,120,60);
+		b1.setBounds(300,100,90,60);
 		b1.setBackground(Color.RED);
 		add(b1);
 		b1.addActionListener(new LoginHandler());
+		b1 = new JButton("SignUp");
+		b1.setBackground(Color.GREEN);
+		b1.setBounds(200, 100, 90, 60);
+		add(b1);
+
 		super.setBackground(Color.gray);
 		setLayout(null);
 		setVisible(true);
@@ -57,9 +62,7 @@ public class LoginGUI extends JFrame{
 				try{
 					if(!(uId.getText().isEmpty() || String.valueOf(uPassword.getPassword()).isEmpty()))
 					{
-						LoginController x = new LoginController(uId.getText(),String.valueOf(uPassword.getPassword()));
-						if(x.login())
-							JOptionPane.showMessageDialog(null, "Login Successfull");
+						Controller x = new Controller(uId.getText(),String.valueOf(uPassword.getPassword()));
 					}
 					else throw  new NecessityMeetException();
 					
