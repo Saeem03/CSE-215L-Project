@@ -62,7 +62,8 @@ public class LoginGUI extends JFrame{
 				try{
 					if(!(uId.getText().isEmpty() || String.valueOf(uPassword.getPassword()).isEmpty()))
 					{
-						Controller x = new Controller(uId.getText(),String.valueOf(uPassword.getPassword()));
+						Controller x = new Controller();
+						x.tryLogin(uId.getText(),String.valueOf(uPassword.getPassword()));
 					}
 					else throw  new NecessityMeetException();
 					
@@ -71,7 +72,7 @@ public class LoginGUI extends JFrame{
 				{
 					System.out.println("eeeeeeeee");
 				}
-
+				
 		}
 	}
 	}

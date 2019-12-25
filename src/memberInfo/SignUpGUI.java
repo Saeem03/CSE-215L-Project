@@ -34,42 +34,42 @@ public class SignUpGUI extends JFrame {
 		a.setBounds(50,10,100,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		add(a);
-		uName = new JTextField("",150);
+		uName = new JTextField("Saeem ",150);
 		uName.setBounds(200,10,200,30);
 		add(uName);
 		a = new JLabel("User Name :");
 		a.setBounds(50,50,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 18));
 		add(a);
-		uId = new JTextField("",150);
+		uId = new JTextField("Saeem03",150);
 		uId.setBounds(200,50,200,30);
 		add(uId);
 		a = new JLabel("Father's Name :");
 		a.setBounds(50,90,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 18));
 		add(a);
-		uFatherName = new JTextField("",150);
+		uFatherName = new JTextField("A",150);
 		uFatherName.setBounds(200,90,200,30);
 		add(uFatherName);
 		a = new JLabel("Mother's Name :");
 		a.setBounds(50,130,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 18));
 		add(a);
-		uMotherName = new JTextField("",150);
+		uMotherName = new JTextField("B",150);
 		uMotherName.setBounds(200,130,200,30);
 		add(uMotherName);
 		a = new JLabel("Address :");
 		a.setBounds(50,170,170,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		add(a);
-		uAddress = new JTextField(10);
+		uAddress = new JTextField("Bashundhara");
 		uAddress.setBounds(200, 170 , 200, 30);
 		add(uAddress);
 		a = new JLabel("Age :");
 		a.setBounds(50,210,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		add(a);
-		uAge = new JTextField(10);
+		uAge = new JTextField("10");
 		uAge.setBounds(200, 210 , 200, 30);
 		add(uAge);
 
@@ -77,7 +77,7 @@ public class SignUpGUI extends JFrame {
 		a.setBounds(50,300,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		add(a);
-		uPhone = new JTextField("",10);
+		uPhone = new JTextField("01793382937",10);
 		uPhone.setBounds(200,300,200,30);
 		add(uPhone);
 		a = new JLabel("Gender :");
@@ -98,7 +98,7 @@ public class SignUpGUI extends JFrame {
 		a.setBounds(50,360,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		add(a);
-		uPassword = new JPasswordField(10);
+		uPassword = new JPasswordField("55555");
 		uPassword.setBounds(200,360,200,30);
 		add(uPassword);
 		JButton b1 = new JButton("SignUp");
@@ -121,7 +121,8 @@ public class SignUpGUI extends JFrame {
 				try{
 					if(!(uName.getText().isEmpty() || uId.getText().isEmpty() || String.valueOf(uPassword.getPassword()).isEmpty() || uAge.getText().isEmpty() || uGender.getElements().nextElement().getText().isEmpty()))
 					{
-						Controller r = new Controller(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()),uFatherName.getText(),uMotherName.getText());
+						Controller r = new Controller();
+						r.trySignUp(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()),uFatherName.getText(),uMotherName.getText());
 						System.out.println("File saved");
 
 					}
@@ -129,7 +130,7 @@ public class SignUpGUI extends JFrame {
 				}
 				catch(Exception e1)
 				{
-					e1.printStackTrace();
+					System.err.println("SomeThing Went Wrong");
 				}
 			}
 		}

@@ -6,27 +6,29 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Controller {
-	public Controller(String name, String id, String address, String gender, String password,int age, String fName, String mName) throws Exception
+	public Controller() throws Exception
 	{
-		Member m = new Member(name, id, address, gender,password, age,fName,mName);
-		m.name=name;
-		m.id = id; 
-		m.address = address;
-		m.gender = gender;
-		m.password = password;
-		m.fName = fName;
-		m.mName = mName;
-		m.age = age;
-		new SignUp(m);
-	}
-	public Controller( String id,String password) throws Exception {
 		
-		tryLogin(id,password);
 	}
 	public void tryLogin( String id,String password) throws Exception {
 		if(id!=null && password!= null)
 		{ 
 			new Login(id,password);
+		}
+	}
+	public void trySignUp( String name, String id, String address, String gender, String password,int age, String fName, String mName) throws Exception {
+		if(id!=" " && password!= " ")
+		{ 
+			Member m = new Member();
+			m.setName(name);
+			m.setId(id); 
+			m.setAddress( address);
+			m.setGender (gender);
+			m.setPassword (password);
+			m.setfName(fName);
+			m.setmName(mName);
+			m.setAge(age);
+			new SignUp(m);
 		}
 	}
 
