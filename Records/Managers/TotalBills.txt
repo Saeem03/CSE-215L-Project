@@ -1,0 +1,10 @@
+gas_Bill
+35.0
+electricity_Bill
+25.0
+internet_Bill
+45.0
+houseKeeper_Charge
+77.0
+water_Bill
+55.0

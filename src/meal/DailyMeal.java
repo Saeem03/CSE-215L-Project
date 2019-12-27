@@ -15,6 +15,13 @@ public class DailyMeal {
 	JRadioButton lRich;
 	JRadioButton dNormal;
 	JRadioButton dRich;
+	Color back;
+	public Color getBack() {
+		return back;
+	}
+	public void setBack(Color back) {
+		this.back = back;
+	}
 	static int days=0;
  DailyMeal(JFrame f,int x,int y,int width,int hight){
 	 this.days++;
@@ -24,35 +31,40 @@ public class DailyMeal {
 		d.setFont(new Font("Serif", Font.PLAIN, 21));
 		f.add(d);
 		
-		JLabel a = new JLabel("   Morning");
-		a.setBounds(x+170,y-5,width+40,40);
+		JLabel a = new JLabel("      Morning");
+		a.setFont(new Font("Serif", Font.BOLD, 18));
+		a.setBounds(x+170,y-5,width+30,25);
+		a.setForeground(Color.yellow);
+		a.setBackground(Color.decode("#336699"));
 		a.setOpaque(true);
-		a.setBackground(Color.gray);
-		a.setForeground(Color.green);
-		a.setFont(new Font("Serif", Font.BOLD, 22));
 		f.add(a);
 		
 		a = new JLabel("     Lunch");
-		a.setBounds(x+350,y-5,width+40,40);
+		a.setBounds(x+350,y-5,width+30,25);
 		a.setOpaque(true);
-		a.setBackground(Color.BLUE);
+		a.setBackground(Color.decode("#1FBED6"));
 		a.setForeground(Color.yellow);
 		a.setFont(new Font("Serif", Font.BOLD, 22));
 		f.add(a);
 
 		a = new JLabel("     Dinner");
-		a.setBounds(x+530,y-5,width+40,40);
+		a.setBounds(x+530,y-5,width+30,25);
 		a.setOpaque(true);
-		a.setBackground(Color.BLUE);
+		a.setBackground(Color.ORANGE);
 		a.setForeground(Color.yellow);
 		a.setFont(new Font("Serif", Font.BOLD, 22));
 		f.add(a);
+		
 		mNormal = new JRadioButton("N");
-		mNormal.setBounds(x+180,y+50,width-40,20);
+		mNormal.setBackground(back);
+		mNormal.setOpaque(true);
+		mNormal.setBounds(x+180,y+30,width-40,20);
 		f.add(mNormal);
 		
 		mRich = new JRadioButton("R");
-		mRich.setBounds(x+260,y+40,width-40,40);
+		mRich.setBackground(back);
+		mRich.setOpaque(true);
+		mRich.setBounds(x+260,y+20,width-40,40);
 		f.add(mRich);
 		
 		ButtonGroup g1 = new ButtonGroup();
@@ -60,11 +72,15 @@ public class DailyMeal {
 		g1.add(mRich);
 		
 		lNormal = new JRadioButton("N");
-		lNormal.setBounds(x+370,y+50,width-40,20);
+		lNormal.setBackground(back);
+		lNormal.setOpaque(true);
+		lNormal.setBounds(x+370,y+30,width-40,20);
 		f.add(lNormal);
 		
 		lRich = new JRadioButton("R");
-		lRich.setBounds(x+440,y+40,width-40,40);
+		lRich.setBackground(back);
+		lRich.setOpaque(true);
+		lRich.setBounds(x+440,y+20,width-40,40);
 		f.add(lRich);
 		
 		ButtonGroup g2 = new ButtonGroup();
@@ -72,27 +88,32 @@ public class DailyMeal {
 		g2.add(lRich);
 		
 		dNormal = new JRadioButton("N");
-		dNormal.setBounds(x+550,y+50,width-40,20);
+		dNormal.setBackground(back);
+		dNormal.setOpaque(true);
+
+		dNormal.setBounds(x+550,y+30,width-40,20);
 		f.add(dNormal);
 		
 		dRich = new JRadioButton("R");
-		dRich.setBounds(x+620,y+40,width-40,40);
+		dRich.setOpaque(true);
+		dRich.setBackground(back);
+		dRich.setBounds(x+620,y+20,width-40,40);
 		f.add(dRich);
 		
 		ButtonGroup g3 = new ButtonGroup();
 		g3.add(dNormal);
 		g3.add(dRich);
 		
-		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
-		f.setLayout(null);
-		f.setSize(800,800);
-		f.setVisible(true);
+//		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+//		f.setLayout(null);
+//		f.setSize(800,800);
+//		f.setVisible(true);
 	 
  }
- public static void main(String [] args)
- {
-	 DailyMeal p = new DailyMeal(new JFrame(),10,10,100,100);
- }
+// public static void main(String [] args)
+// {
+//	 DailyMeal p = new DailyMeal(new JFrame(),10,10,100,100);
+// }
  public String date(int i) {
 	 LocalDate x = LocalDate.now();
 	 x=x.plusDays(i);

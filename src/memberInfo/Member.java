@@ -7,7 +7,8 @@ public class Member {
 	private boolean isLogin;
 	public Member()
 	{
-		
+		managerInfo.Rent_And_Room.total_Member++;
+
 	}
 	public Member(String name, String id, String address, String gender, String password, String fName, String mName,
 			int age, double rent, Bills mBills) {
@@ -22,6 +23,8 @@ public class Member {
 		this.age = age;
 		this.rent = rent;
 		this.mBills = mBills;
+		managerInfo.Rent_And_Room.total_Member++;
+
 	}
 	public Member(String name, String id, String address, String gender, String password, String fName, String mName,int age, double rent, Bills mBills, boolean isLogin) {
 		super();
@@ -36,6 +39,8 @@ public class Member {
 		this.rent = rent;
 		this.mBills = mBills;
 		this.isLogin = isLogin;
+//		managerInfo.Rent_And_Room.total_Member++;
+
 	}
 	public String getName() {
 		return name;

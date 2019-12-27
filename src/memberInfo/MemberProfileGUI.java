@@ -34,7 +34,11 @@ public class MemberProfileGUI extends JFrame implements Runnable{
 		
 		time = new JLabel();
 		time.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
-		time.setBounds(50,100,300,100);
+		time.setBounds(65,380,300,40);
+		time.setBackground(Color.green);
+		time.setForeground(Color.red);
+		time.setOpaque(true);
+		time.setBounds(50,135,300,30);
 		add(time);		
 		
 		JLabel name = new JLabel("Name :");
@@ -130,7 +134,7 @@ public class MemberProfileGUI extends JFrame implements Runnable{
 	}
 	public void run(){
 		do {
-			time.setText(""+ LocalDate.now()+"           "+LocalTime.now());
+			time.setText("      "+ LocalDate.now()+"           "+LocalTime.now());
 		}
 		while(x.isAlive());
 

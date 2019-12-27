@@ -5,6 +5,8 @@ public class Bills {
 	private double gas_Bill;
 	private double water_Bill;
 	private double internet_Bill;
+	private double HouseKeeper_Charge;
+	private double rent;
 	public Bills(double electricity_Bill, double gas_Bill, double water_Bill, double internet_Bill) {
 		this.electricity_Bill = electricity_Bill;
 		this.gas_Bill = gas_Bill;
@@ -35,7 +37,4 @@ public class Bills {
 	public void setInternet_Bill(double internet_Bill) {
 		this.internet_Bill = internet_Bill;
 	}
-	
-	
-
 }
