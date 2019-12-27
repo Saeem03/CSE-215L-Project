@@ -8,3 +8,14 @@ houseKeeper_Charge
 77.0
 water_Bill
 55.0
+per_head_gas_Bill
+35.0
+per_head_electricity_Bill
+25.0
+per_head_internet_Bill
+45.0
+per_head_houseKeeper_Charge
+77.0
+per_head_water_Bill
+55.0
+
