@@ -18,9 +18,8 @@ public class Total_Bills {
 	private  static double per_head_water_Bill;
 	private  static double per_head_internet_Bill;
 	private  static double per_head_houseKeeper_Charge;
-	HashMap <String,Double> list;
+	private HashMap <String,Double> list;
 	private HashMap<String,Double> recordedList = new HashMap<>();
-	
 	Total_Bills() throws InterruptedException, IOException{
 		readRecord();
 		setTotal();
@@ -88,7 +87,6 @@ public class Total_Bills {
 		per_head_houseKeeper_Charge = recordedList.get("per_head_houseKeeper_Charge");
 	}
 	
-	
 	public String toString(HashMap<String,Double> a)
 	{
 		String s="";
@@ -97,7 +95,6 @@ public class Total_Bills {
 			s+=i+"\n"+a.get(i)+"\n";
 		}
 		return s;
-		
 	}
 	
 	public  double getElectricity_Bill() {

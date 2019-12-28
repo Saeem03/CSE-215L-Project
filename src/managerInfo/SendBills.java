@@ -60,7 +60,7 @@ public class SendBills {
 		public void writeBills()
 		{
 			try {
-				FileWriter x = new FileWriter(".\\Text.txt");
+				FileWriter x = new FileWriter("D:\\eclipse-workspace\\Final Project\\Records\\Managers\\Text.txt");
 				String s="";
 				for(String m:readedlist.keySet()){ 
 					x.write(m+"\n");
