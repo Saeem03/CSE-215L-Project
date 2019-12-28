@@ -31,7 +31,6 @@ public class MemberProfileGUI extends JFrame implements Runnable{
 	
 	MemberProfileGUI(){
 		super("Profile");
-		
 		time = new JLabel();
 		time.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
 		time.setBounds(65,380,300,40);
@@ -143,5 +142,4 @@ public class MemberProfileGUI extends JFrame implements Runnable{
 	{
 		MemberProfileGUI p = new MemberProfileGUI();
 	}
-	
 }

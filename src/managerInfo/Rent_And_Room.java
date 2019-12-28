@@ -11,34 +11,19 @@ public class Rent_And_Room {
 	private static int total_Room;
 	public static int total_Member;
 	public static int total_Seats;
+	
+	
 //	private static int vacant_Room;
 //	private static int vacant_Member;
 //	private static int vacant_Seats;
 	HashMap <String,Integer> list;
+	private HashMap<String,Integer> recordedList = new HashMap<>();
 	Thread thread;
 	Rent_And_Room() throws InterruptedException
 	{
 		readRecord();
-		thread = new Thread(readRecord());
-		Thread.sleep(1);
-		run();
-		thread.start();
 		setTotal();
 		this.MakeList();
-	}
-	private HashMap<String,Integer> recordedList = new HashMap<>();
-
-	public  int getTotal_Room() {
-		return total_Room;
-	}
-	public  void setTotal_Room(int total_Room) {
-		Rent_And_Room.total_Room = total_Room;
-	}
-	public int getTotal_Member() {
-		return total_Member;
-	}
-	public  void setTotal_Member(int total_Member) {
-		Rent_And_Room.total_Member = total_Member;
 	}
 	public  synchronized  void MakeList() {
 		list = new HashMap<>();
@@ -64,46 +49,44 @@ public class Rent_And_Room {
 		x.close();
 
 	}
-	public Runnable readRecord() 
+	public void readRecord() 
 	{  
 		Scanner scan;
 		try {
 			scan = new Scanner(new FileReader("D:\\eclipse-workspace\\Final Project\\Records\\Managers\\Total_Members.txt"));
 			while(scan.hasNext())
 				{
-				
 				recordedList.put(scan.nextLine(),Integer.parseInt(scan.nextLine().trim()));
-				System.out.println(total_Member+"  ");
-
-				
 				continue;
 				}
+			setTotal();
 		} catch (FileNotFoundException e1) {
 			System.out.println("Record listing was not complete");
-		}
-		try{
-			setTotal();
 		}
 		catch(Exception e1)
 		{
 			System.out.println("Total Set Didn't Worked");
 		}
-		return null;
 	}
-	public void run(){
-		do
-		{
-			this.MakeList();
-			this.readRecord();
-			System.out.println(this.toString(recordedList));
-			
-		}
-		while(thread.isAlive());
-	}
+	
 	public synchronized void  setTotal()
 	{
 		
 		total_Member = recordedList.get("total_Member");
+	}
+	
+	
+	public  int getTotal_Room() {
+		return total_Room;
+	}
+	public int getTotal_Member() {
+		return total_Member;
+	}
+	public  void setTotal_Room(int total_Room) {
+		Rent_And_Room.total_Room = total_Room;
+	}
+	public  void setTotal_Member(int total_Member) {
+		Rent_And_Room.total_Member = total_Member;
 	}
 
 }

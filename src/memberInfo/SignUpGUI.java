@@ -13,6 +13,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import java.security.SecureRandom;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 
 public class SignUpGUI extends JFrame {
@@ -28,89 +30,103 @@ public class SignUpGUI extends JFrame {
 	ButtonGroup uGender = new ButtonGroup();
 	JRadioButton uMale;
 	JRadioButton uFemale;
+	
 	SignUpGUI(){
+		
 
 		JLabel a = new JLabel("Name :");
-		a.setBounds(50,10,100,30);
+		a.setBounds(66,32,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
+		getContentPane().add(a);
 		uName = new JTextField("Saeem ",150);
-		uName.setBounds(200,10,200,30);
-		add(uName);
+		uName.setBounds(276,32,458,30);
+		getContentPane().add(uName);
 		a = new JLabel("User Name :");
-		a.setBounds(50,50,200,30);
+		a.setBounds(66,72,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 18));
-		add(a);
+		getContentPane().add(a);
 		uId = new JTextField("Saeem03",150);
-		uId.setBounds(200,50,200,30);
-		add(uId);
+		uId.setBounds(276,72,458,30);
+		getContentPane().add(uId);
 		a = new JLabel("Father's Name :");
-		a.setBounds(50,90,200,30);
+		a.setBounds(66,112,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 18));
-		add(a);
+		getContentPane().add(a);
 		uFatherName = new JTextField("A",150);
-		uFatherName.setBounds(200,90,200,30);
-		add(uFatherName);
+		uFatherName.setBounds(276,112,458,30);
+		getContentPane().add(uFatherName);
 		a = new JLabel("Mother's Name :");
-		a.setBounds(50,130,200,30);
+		a.setBounds(66,152,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 18));
-		add(a);
+		getContentPane().add(a);
 		uMotherName = new JTextField("B",150);
-		uMotherName.setBounds(200,130,200,30);
-		add(uMotherName);
+		uMotherName.setBounds(276,152,458,30);
+		getContentPane().add(uMotherName);
 		a = new JLabel("Address :");
-		a.setBounds(50,170,170,30);
+		a.setBounds(66,278,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
+		getContentPane().add(a);
 		uAddress = new JTextField("Bashundhara");
-		uAddress.setBounds(200, 170 , 200, 30);
-		add(uAddress);
+		uAddress.setBounds(276, 192 , 458, 30);
+		getContentPane().add(uAddress);
 		a = new JLabel("Age :");
-		a.setBounds(50,210,200,30);
+		a.setBounds(66,232,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
+		getContentPane().add(a);
 		uAge = new JTextField("10");
-		uAge.setBounds(200, 210 , 200, 30);
-		add(uAge);
+		uAge.setBounds(276, 232 , 458, 30);
+		getContentPane().add(uAge);
 
 		a = new JLabel("Phone No :");
-		a.setBounds(50,300,200,30);
+		a.setBounds(66,322,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
+		getContentPane().add(a);
 		uPhone = new JTextField("01793382937",10);
-		uPhone.setBounds(200,300,200,30);
-		add(uPhone);
+		uPhone.setBounds(276,322,458,30);
+		getContentPane().add(uPhone);
 		a = new JLabel("Gender :");
-		a.setBounds(50,250,200,30);
+		a.setBounds(79,196,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
+		getContentPane().add(a);
 		uMale = new JRadioButton("Male");
-		uMale.setBounds(200, 250 ,100,40);
+		uMale.setBounds(340, 272 ,148,40);
 		uMale.setFont(new Font("Serif", Font.BOLD, 20));
-		add(uMale);
+		getContentPane().add(uMale);
 		uFemale = new JRadioButton("Female");
-		uFemale.setBounds(300,250,120,40);
+		uFemale.setBounds(517,272,160,40);
 		uFemale.setFont(new Font("Serif", Font.BOLD, 20));
-		add(uFemale);
+		getContentPane().add(uFemale);
 		uGender.add(uMale);
 		uGender.add(uFemale);
 		a = new JLabel("Password :");
-		a.setBounds(50,360,200,30);
+		a.setBounds(66,382,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
+		getContentPane().add(a);
 		uPassword = new JPasswordField("55555");
-		uPassword.setBounds(200,360,200,30);
-		add(uPassword);
+		uPassword.setBounds(276,382,458,30);
+		getContentPane().add(uPassword);
 		JButton b1 = new JButton("SignUp");
-		b1.setBounds(250,500,150,90);
+		b1.setBounds(474,496,265,70);
 		b1.setBackground(Color.RED);
-		add(b1);
+		getContentPane().add(b1);
+		b1.addActionListener(new SignUpHandler());
+		JButton b2 = new JButton("Login");
+		b2.setBounds(216,496,217,70);
+		b2.setBackground(Color.RED);
+		getContentPane().add(b2);
 		b1.addActionListener(new SignUpHandler());
 		super.setBackground(Color.gray);
-		setLayout(null);
+		getContentPane().setLayout(null);
+
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(800,700);
+		setLocation(400,250);
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginGUI y=new LoginGUI(); 
+			}
+		});
 	}
 	public class SignUpHandler implements ActionListener{
 
@@ -124,7 +140,6 @@ public class SignUpGUI extends JFrame {
 						Controller r = new Controller();
 						r.trySignUp(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()),uFatherName.getText(),uMotherName.getText());
 						System.out.println("File saved");
-
 					}
 					else throw  new NecessityMeetException();
 				}
@@ -136,9 +151,9 @@ public class SignUpGUI extends JFrame {
 		}
 
 	}
-
-	public static void main(String[] args) {
-		SignUpGUI x = new SignUpGUI();
+	public void Hide()
+	{
+		this.setVisible(false);
 	}
 
 }

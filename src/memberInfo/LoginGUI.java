@@ -17,42 +17,47 @@ import javax.swing.JTextField;
 public class LoginGUI extends JFrame{
 	JTextField uId;
 	JPasswordField uPassword;
+	private JButton b1_1;
 	LoginGUI (){
 		super();
-		JLabel a = new JLabel("UserName :");
+		JLabel a = new JLabel("          UserName :");
 		a.setBounds(50,10,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
-		uId = new JTextField("",150);
-		uId.setBounds(200,10,200,30);
-		add(uId);
-		a = new JLabel("Password :");
+		getContentPane().add(a);
+		uId = new JTextField("Saeem",150);
+		uId.setBounds(300,10,300,30);
+		getContentPane().add(uId);
+		a = new JLabel("          Password   :");
 		a.setBounds(50,50,200,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
-		add(a);
-		uPassword = new JPasswordField(10);
-		uPassword.setBounds(200,50,200,30);
-		add(uPassword);
+		getContentPane().add(a);
+		uPassword = new JPasswordField("123",10);
+		uPassword.setBounds(300,50,300,30);
+		getContentPane().add(uPassword);
 		JButton b1 = new JButton("Login");
-		b1.setBounds(300,100,90,60);
+		b1.setBounds(451,109,124,60);
 		b1.setBackground(Color.RED);
-		add(b1);
+		getContentPane().add(b1);
 		b1.addActionListener(new LoginHandler());
-		b1 = new JButton("SignUp");
-		b1.setBackground(Color.GREEN);
-		b1.setBounds(200, 100, 90, 60);
-		add(b1);
+		b1_1 = new JButton("SignUp");
+		b1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new SignUpGUI();
+			}
+		});
+		b1_1.setBackground(Color.GREEN);
+		b1_1.setBounds(115, 109, 300, 60);
+		getContentPane().add(b1_1);
 
 		super.setBackground(Color.gray);
-		setLayout(null);
+		getContentPane().setLayout(null);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(600,300);
+		setSize(701,250);
+		setLocation(400,250);
 	}
-	public static void main(String[] args)
-	{
-		LoginGUI x = new LoginGUI();
-	}
+
 	public class LoginHandler  implements ActionListener  {
 		public void actionPerformed(ActionEvent e) 
 		{
@@ -62,15 +67,26 @@ public class LoginGUI extends JFrame{
 				try{
 					if(!(uId.getText().isEmpty() || String.valueOf(uPassword.getPassword()).isEmpty()))
 					{
-						Controller x = new Controller();
-						x.tryLogin(uId.getText(),String.valueOf(uPassword.getPassword()));
+						Login x = new Login();
+						Boolean isLogin =x.login(uId.getText(),String.valueOf(uPassword.getPassword()));
+						System.out.println(x.isLogin);
+						if(isLogin==true)
+						{
+							MemberProfGUI m = new MemberProfGUI();
+							System.out.println("Worikinh");
+							dispose();
+						}
+						else
+							System.out.println("New Frame fail");
+						
 					}
 					else throw  new NecessityMeetException();
+					
 					
 				}
 				catch(Exception e1)
 				{
-					System.out.println("eeeeeeeee");
+					System.out.println("Login Button Not Working");
 				}
 				
 		}

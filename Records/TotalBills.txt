@@ -11,7 +11,7 @@ per_head_houseKeeper_Charge
 per_head_internet_Bill
 45.0
 electricity_Bill
-999.0
+500.0
 internet_Bill
 80000.0
 houseKeeper_Charge

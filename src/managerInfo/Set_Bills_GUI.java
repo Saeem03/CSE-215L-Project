@@ -1,3 +1,4 @@
+
 package managerInfo;
 
 import java.awt.EventQueue;
@@ -31,8 +32,20 @@ public class Set_Bills_GUI extends JFrame {
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_4;
+	private JLabel label_5;
+	private JLabel label_6;
+	private JLabel label_7;
+	private JLabel label_9;
+	private JLabel label_10;
+	private JLabel label_11;
 	private Total_Bills TB ;
 	private Rent_And_Room RR ;
+	private JButton Flat_Save;
+	private JButton Flat_Edit;
+	private JButton Flat_Cancel;
+	private JButton Bills_Save;
+	private JButton Bills_Edit;
+	private JButton Bills_Cancel;
 	/**
 	 * Launch the application.
 	 */
@@ -53,8 +66,9 @@ public class Set_Bills_GUI extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws InterruptedException 
 	 */
-	public Set_Bills_GUI() {
+	public Set_Bills_GUI() throws InterruptedException {
 		try {
 			TB= new Total_Bills();
 			RR = new Rent_And_Room();
@@ -65,7 +79,7 @@ public class Set_Bills_GUI extends JFrame {
 		
 		
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.YELLOW);
+		contentPane.setBackground(new Color(255, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -120,44 +134,36 @@ public class Set_Bills_GUI extends JFrame {
 		lblHousekeeperCharge.setBackground(SystemColor.inactiveCaptionBorder);
 		lblHousekeeperCharge.setBounds(24, 137, 255, 20);
 		panel.add(lblHousekeeperCharge);
-		
-		textField = new JTextField();
-		textField.setText(""+TB.getElectricity_Bill());
-		textField.setVisible(false);
+//
+//		TB.setTotal();
+//		RR.setTotal();
+		textField = new JTextField("100");
 		textField.setBounds(305, 11, 193, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setText(""+TB.getGas_Bill());
-		textField_1.setVisible(false);
+		textField_1 = new JTextField("100");
 		textField_1.setColumns(10);
 		textField_1.setBounds(305, 38, 193, 20);
 		panel.add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setText(""+TB.getInternet_Bill());
-		textField_2.setVisible(false);
+		textField_2 = new JTextField("100");
 		textField_2.setColumns(10);
 		textField_2.setBounds(305, 68, 193, 20);
 		panel.add(textField_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setVisible(false);
-		textField_3.setText(""+TB.getWater_Bill());
+		textField_3 = new JTextField("100");
 		textField_3.setColumns(10);
 		textField_3.setBounds(305, 99, 193, 20);
 		panel.add(textField_3);
 		
-		textField_7 = new JTextField();
-		textField_7.setText(TB.getHouseKeeper_Charge()+"");
-		textField_7.setVisible(false);
+		textField_7 = new JTextField("100");
 		textField_7.setColumns(10);
 		textField_7.setBounds(305, 133, 193, 20);
 		panel.add(textField_7);
 		
-		TB.setTotal();
-		RR.setTotal();
+//		TB.setTotal();
+//		RR.setTotal();
 		label = new JLabel();
 		label.setBounds(305, 11, 191, 20);
 		panel.add(label);
@@ -185,11 +191,10 @@ public class Set_Bills_GUI extends JFrame {
 		label_4.setBounds(305, 130, 191, 23);
 		panel.add(label_4);
 		
-		JButton Bills_Edit = new JButton("Edit");
-		JButton Bills_Save = new JButton("Save");
+		 Bills_Edit = new JButton("Edit");
+		 Bills_Save = new JButton("Save");
 		Bills_Save.setFont(new Font("Tahoma", Font.BOLD, 13));
 		Bills_Save.setBounds(633, 39, 89, 23);
-		Bills_Save.setVisible(false);
 		panel.add(Bills_Save);
 		
 		Bills_Edit.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -198,6 +203,15 @@ public class Set_Bills_GUI extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(305, 147, -119, 10);
 		panel.add(panel_2);
+
+		Bills_Cancel = new JButton("Cancel");
+		Bills_Cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cancel();
+			}
+		});
+		Bills_Cancel.setBounds(633, 69, 89, 23);
+		panel.add(Bills_Cancel);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		horizontalStrut.setBounds(43, 44, 719, 9);
@@ -227,24 +241,23 @@ public class Set_Bills_GUI extends JFrame {
 		lblTotalMembers.setBounds(24, 11, 255, 20);
 		panel_1.add(lblTotalMembers);
 		
-		textField_4 = new JTextField();
-//		textField_4.setText("0");
-		textField_4.setText(""+RR.getTotal_Member());
-		textField_4.setVisible(false);
+		textField_4 = new JTextField("100");
 		textField_4.setColumns(10);
 		textField_4.setBounds(305, 11, 193, 20);
 		panel_1.add(textField_4);
 		
-		JLabel label_5 = new JLabel();
+		
+		 label_5 = new JLabel("100");
 		label_5.setText(""+RR.getTotal_Member());
 		label_5.setBounds(305, 11, 193, 20);
 		panel_1.add(label_5);
-		JButton Flat_Save = new JButton("Save");
-		JButton Flat_Edit = new JButton("Edit");
+		
+		Flat_Edit = new JButton("Edit");
 		Flat_Edit.setFont(new Font("Tahoma", Font.BOLD, 13));
 		Flat_Edit.setBounds(633, 12, 89, 23);
 		panel_1.add(Flat_Edit);
-		Flat_Save.setVisible(false);
+		
+		Flat_Save = new JButton("Save");
 		Flat_Save.setFont(new Font("Tahoma", Font.BOLD, 13));
 		Flat_Save.setBounds(633, 39, 89, 23);
 		panel_1.add(Flat_Save);
@@ -284,55 +297,57 @@ public class Set_Bills_GUI extends JFrame {
 		lblHousekeeperBillper.setBounds(24, 169, 255, 20);
 		panel_1.add(lblHousekeeperBillper);
 		
-		JLabel label_6 = new JLabel();
+		label_6 = new JLabel();
 		label_6.setText("0");
 		label_6.setBounds(305, 42, 193, 20);
 		panel_1.add(label_6);
 		
-		JLabel label_7 = new JLabel();
-		label_7.setEnabled(false);
+		label_7 = new JLabel();
 		label_7.setText("0");
 		label_7.setBounds(305, 78, 193, 20);
 		panel_1.add(label_7);
 		
-		JLabel label_9 = new JLabel();
-		label_9.setEnabled(false);
+		label_9 = new JLabel();
 		label_9.setText("0");
 		label_9.setBounds(305, 107, 193, 20);
 		panel_1.add(label_9);
 		
-		JLabel label_10 = new JLabel();
-		label_10.setEnabled(false);
+		label_10 = new JLabel();
 		label_10.setText("0");
 		label_10.setBounds(305, 138, 193, 20);
 		panel_1.add(label_10);
 		
-		JLabel label_11 = new JLabel();
-		label_11.setEnabled(false);
+		label_11 = new JLabel();
 		label_11.setText("0");
 		label_11.setBounds(305, 169, 193, 20);
 		panel_1.add(label_11);
+		
+		Flat_Cancel = new JButton("Cancel");
+		Flat_Cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Flat_Cancel.setVisible(false);
+				textField_4.setVisible(false);
+				Flat_Save.setVisible(false);
+				Flat_Edit.setVisible(true);
+			}
+		});
+		Flat_Cancel.setBounds(633, 74, 89, 23);
+		panel_1.add(Flat_Cancel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
-		
-
+		begin();
 		Flat_Edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Flat_Edit.setVisible(false);
 				Flat_Save.setVisible(true);
+				Flat_Cancel.setVisible(true);
 				textField_4.setVisible(true);
 				System.out.println("Flat Edit Working");
 			}
 		});
 		Bills_Edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				textField.setVisible(true);
-				textField_1.setVisible(true);
-				textField_2.setVisible(true);
-				textField_3.setVisible(true);
-				textField_7.setVisible(true);
-				Bills_Edit.setVisible(false);
-				Bills_Save.setVisible(true);
+				Open_Text();
 				System.out.println("Flat save Working");
 				
 			}
@@ -346,13 +361,7 @@ public class Set_Bills_GUI extends JFrame {
 			TB.setWater_Bill(Double.parseDouble(textField_2.getText()));
 			TB.setInternet_Bill(Double.parseDouble(textField_3.getText()));
 			TB.setHouseKeeper_Charge(Double.parseDouble(textField_7.getText()));
-			textField.setVisible(false);
-			textField_1.setVisible(false);
-			textField_2.setVisible(false);
-			textField_3.setVisible(false);
-			textField_7.setVisible(false);
-			Bills_Edit.setVisible(true);
-			Bills_Save.setVisible(false);
+			hide_text();
 			try{
 				TB.setElectricity_Bill(Double.parseDouble(textField.getText()));
 				TB.setGas_Bill(Double.parseDouble(textField_1.getText()));
@@ -366,6 +375,7 @@ public class Set_Bills_GUI extends JFrame {
 				label_3.setText(""+TB.getWater_Bill());
 				label_4.setText(""+TB.getHouseKeeper_Charge());
 				
+				
 			}
 			catch(Exception e1 )
 			{
@@ -373,71 +383,124 @@ public class Set_Bills_GUI extends JFrame {
 			}
 			try {
 				TB.saveRecord();
+				TB.readRecord();
+				RR.saveRecord();
+				RR.readRecord();
+				flat_Save_Work();
 			} catch (IOException e2) {
 				System.out.println("TextField didn't saved");
 			}
-//			try{
-//
-//				run();
-//			}
-//			catch(Exception K)
-//			{
-//				System.out.println("Point 3");
-//			}
 		}
 	});
 	Flat_Save.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			Flat_Edit.setVisible(true);
-			Flat_Save.setVisible(false);
-			textField_4.setVisible(false);
-			
-			try{
-				RR.setTotal_Member(Integer.parseInt(textField_4.getText()));
-				
-			}
-			catch(Exception p)
-			{
-				System.out.println("Point 1");
-			}
-
-			try{
-				RR.setTotal_Member(Integer.parseInt(textField_4.getText()));
-				RR.saveRecord();
-				RR.readRecord();
-				label_5.setText(""+RR.getTotal_Member());
-				textField_4.setText(""+RR.getTotal_Member());
-				
-			}
-			catch(Exception e1 )
-			{
-				System.out.println("POint 2");
-			}
-			try {
-				TB.saveRecord();
-				
-			int x=Integer.parseInt(textField_4.getText());
-			label_6.setText(""+TB.perHeadElectricityBills(x));
-			label_7.setText(""+TB.perHeadGasBills(x));
-			label_9.setText(""+TB.perHeadInternetBills(x));
-			label_10.setText(""+TB.perHeadWaterBills(x));
-			label_11.setText(""+TB.perHeadHousekeeperCharge(x));
-
-			} catch (IOException e2) {
-				System.out.println("TextField didn't saved");
-			}
-
-//			try{
-//				
-//				run();
-//			}
-//			catch(Exception K)
-//			{
-//				System.out.println("Point 3");
-//			}
-
-		}
-	});
+			flat_Save_Work();
 	
+	}
+	});
+	run();
+	Thread x = new Thread();
+	x.start();
+	x.sleep(5000);
+	}
+	public void run()
+	{
+		flat_Save_Work();
+	}
+	public  void flat_Save_Work()
+	{
+		Flat_Edit.setVisible(true);
+		Flat_Cancel.setVisible(false);
+		Flat_Save.setVisible(false);
+		textField_4.setVisible(false);
+		try{
+			RR.setTotal_Member(Integer.parseInt(textField_4.getText()));
+			
+		}
+		catch(Exception p)
+		{
+			System.out.println("Point 1");
+		}
+		
+		try{
+			RR.setTotal_Member(Integer.parseInt(textField_4.getText()));
+			RR.saveRecord();
+			RR.readRecord();
+			label_5.setText(""+RR.getTotal_Member());
+			textField_4.setText(""+RR.getTotal_Member());
+			
+		}
+		catch(Exception e1 )
+		{
+			System.out.println("POint 2");
+		}
+		try {
+			TB.readRecord();
+			TB.setTotal();
+			TB.saveRecord();
+			RR.readRecord();
+			RR.setTotal();
+			RR.saveRecord();
+			set();
+		} catch (IOException e2) {
+			System.out.println("TextField didn't saved");
+		}
+		
+		
+
+	}
+	public void set() {
+		int x=Integer.parseInt(textField_4.getText());
+		label_6.setText(""+TB.perHeadElectricityBills(x));
+		label_7.setText(""+TB.perHeadGasBills(x));
+		label_9.setText(""+TB.perHeadInternetBills(x));
+		label_10.setText(""+TB.perHeadWaterBills(x));
+		label_11.setText(""+TB.perHeadHousekeeperCharge(x));
+	}
+	public void hide_text()
+	{
+		textField.setVisible(false);
+		textField_1.setVisible(false);
+		textField_2.setVisible(false);
+		textField_3.setVisible(false);
+		textField_7.setVisible(false);
+		Bills_Edit.setVisible(true);
+		Bills_Save.setVisible(false);
+		Bills_Cancel.setVisible(false);
+	}
+	public void Open_Text()
+	{
+		textField.setVisible(true);
+		textField_1.setVisible(true);
+		textField_2.setVisible(true);
+		textField_3.setVisible(true);
+		textField_7.setVisible(true);
+		Bills_Edit.setVisible(false);
+		Bills_Save.setVisible(true);
+		Bills_Cancel.setVisible(true);
+	}
+	public void cancel()
+	{
+		hide_text();
+	}
+	public void begin()
+	{
+		
+	textField_4.setVisible(false);
+	textField.setVisible(false);
+	textField_1.setVisible(false);
+	textField_2.setVisible(false);
+	textField_3.setVisible(false);
+	textField_7.setVisible(false);
+	Bills_Cancel.setVisible(false);
+	Bills_Save.setVisible(false);
+	textField_4.setText(""+RR.getTotal_Member());
+	textField.setText(""+TB.getElectricity_Bill());
+	textField_1.setText(""+TB.getGas_Bill());
+	textField_2.setText(""+TB.getInternet_Bill());
+	textField_3.setText(""+TB.getWater_Bill());
+	textField_7.setText(TB.getHouseKeeper_Charge()+"");
+	Flat_Cancel.setVisible(false);
+	Flat_Save.setVisible(false);
 	}
 }
