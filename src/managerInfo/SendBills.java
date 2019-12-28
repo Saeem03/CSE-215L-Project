@@ -59,15 +59,21 @@ public class SendBills {
 		}
 		public void writeBills()
 		{
-			//FileWriter x = new FileWriter(".\\Text.txt");
-			String s="";
-			  for(String m:readedlist.keySet()){ 
-				  s+=m+"\n"+readedlist.get(m)+"\n";
-//			       System.out.println(m+"\n "+readedlist.get(m));    
-			
+			try {
+				FileWriter x = new FileWriter(".\\Text.txt");
+				String s="";
+				for(String m:readedlist.keySet()){ 
+					x.write(m+"\n");
+					x.write(readedlist.get(m)+"\n");
+					s+=m+"\n"+readedlist.get(m)+"\n";
+					System.out.println(m+"\n "+readedlist.get(m));    
+//					System.out.println(s);
+			}
+				x.close();
+			}
+				catch (IOException e) {
+			}
 				
-			  }
-			  System.out.println(s);
 			
 		}
 

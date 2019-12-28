@@ -247,7 +247,7 @@ public class Set_Bills_GUI extends JFrame {
 		panel_1.add(textField_4);
 		
 		
-		 label_5 = new JLabel("100");
+		label_5 = new JLabel("100");
 		label_5.setText(""+RR.getTotal_Member());
 		label_5.setBounds(305, 11, 193, 20);
 		panel_1.add(label_5);
@@ -283,7 +283,7 @@ public class Set_Bills_GUI extends JFrame {
 		lblInternetBillper.setBounds(24, 102, 255, 20);
 		panel_1.add(lblInternetBillper);
 		
-		JLabel lblInternetBillper_1 = new JLabel("Internet BILL (per head)         :");
+		JLabel lblInternetBillper_1 = new JLabel("Water BILL (per head)         :");
 		lblInternetBillper_1.setOpaque(true);
 		lblInternetBillper_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblInternetBillper_1.setBackground(SystemColor.inactiveCaptionBorder);
@@ -401,7 +401,7 @@ public class Set_Bills_GUI extends JFrame {
 	run();
 	Thread x = new Thread();
 	x.start();
-	x.sleep(5000);
+	x.sleep(500);
 	}
 	public void run()
 	{
@@ -428,7 +428,6 @@ public class Set_Bills_GUI extends JFrame {
 			RR.readRecord();
 			label_5.setText(""+RR.getTotal_Member());
 			textField_4.setText(""+RR.getTotal_Member());
-			
 		}
 		catch(Exception e1 )
 		{
@@ -442,6 +441,7 @@ public class Set_Bills_GUI extends JFrame {
 			RR.setTotal();
 			RR.saveRecord();
 			set();
+			setPerheadTotal();
 		} catch (IOException e2) {
 			System.out.println("TextField didn't saved");
 		}
@@ -502,5 +502,13 @@ public class Set_Bills_GUI extends JFrame {
 	textField_7.setText(TB.getHouseKeeper_Charge()+"");
 	Flat_Cancel.setVisible(false);
 	Flat_Save.setVisible(false);
+	}
+	public void setPerheadTotal()
+	{
+		TB.setPer_head_electricity_Bill(Double.parseDouble(label_6.getText()));
+		TB.setPer_head_gas_Bill(Double.parseDouble(label_7.getText()));
+		TB.setPer_head_water_Bill(Double.parseDouble(label_9.getText()));	
+		TB.setPer_head_internet_Bill(Double.parseDouble(label_10.getText()));
+		TB.setPer_head_houseKeeper_Charge(Double.parseDouble(label_11.getText()));
 	}
 }

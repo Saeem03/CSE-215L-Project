@@ -128,6 +128,26 @@ public class Total_Bills {
 	{
 		return gas_Bill/x;
 	}
+	public static void setPer_head_electricity_Bill(double per_head_electricity_Bill) {
+		Total_Bills.per_head_electricity_Bill = per_head_electricity_Bill;
+	}
+
+	public static void setPer_head_gas_Bill(double per_head_gas_Bill) {
+		Total_Bills.per_head_gas_Bill = per_head_gas_Bill;
+	}
+
+	public static void setPer_head_water_Bill(double per_head_water_Bill) {
+		Total_Bills.per_head_water_Bill = per_head_water_Bill;
+	}
+
+	public static void setPer_head_internet_Bill(double per_head_internet_Bill) {
+		Total_Bills.per_head_internet_Bill = per_head_internet_Bill;
+	}
+
+	public static void setPer_head_houseKeeper_Charge(double per_head_houseKeeper_Charge) {
+		Total_Bills.per_head_houseKeeper_Charge = per_head_houseKeeper_Charge;
+	}
+
 	public double perHeadWaterBills(int x) throws ArithmeticException
 	{
 		return water_Bill/x;

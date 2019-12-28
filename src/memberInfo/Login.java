@@ -7,8 +7,8 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Login {
-	boolean isLogin=false;
-	boolean allowLogin=false;
+	static boolean isLogin=false;
+	 boolean allowLogin=false;
 	Login(){};
 	Login(boolean x)
 	{
@@ -35,7 +35,6 @@ public class Login {
 			while(x.hasNext())
 			{
 				s=x.nextLine();
-				System.out.println(s);
 				if(s.trim().equalsIgnoreCase(id) || s.trim().equalsIgnoreCase(password) )
 				{
 					i++;
@@ -56,8 +55,6 @@ public class Login {
 			else System.out.println("Not found");
 		} catch (FileNotFoundException e1) {
 		}
-		System.out.println(i);
-		System.out.println(isLogin);
 		return isLogin;
 	}
 

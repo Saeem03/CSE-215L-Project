@@ -1,5 +1,3 @@
-gas_Bill
-999.0
 per_head_gas_Bill
 9.99
 per_head_water_Bill
@@ -10,11 +8,3 @@ per_head_houseKeeper_Charge
 9.99
 per_head_internet_Bill
 9.99
-electricity_Bill
-999.0
-internet_Bill
-999.0
-houseKeeper_Charge
-999.0
-water_Bill
-999.0
