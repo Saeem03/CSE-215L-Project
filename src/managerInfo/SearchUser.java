@@ -1,3 +1,4 @@
+
 package managerInfo;
 
 import java.io.FileReader;
@@ -13,19 +14,16 @@ public class SearchUser {
 
 		try {
 			String x;
-			Scanner scan = new Scanner(new FileReader("D:\\eclipse-workspace\\Final Project\\Records\\Member\\Member's User_Password.txt"));
+			Scanner scan = new Scanner(new FileReader(".\\Records\\Member\\Member's User_Password.txt"));
 			while(scan.hasNext())
 			{
 				x=scan.nextLine().trim();
-				System.out.println(this.s);
-				System.out.println(x);
-				int i=0;
-				if(i==0);
+				if(s.equals(x))
 				{
 					System.out.println("Found you!");
-					i=1;
-					scan.close();
+					break;
 				}
+				else
 				x=scan.nextLine();
 			}
 			
@@ -44,6 +42,6 @@ public class SearchUser {
 	
 public static void main(String [] args)
 {
-	SearchUser x= new SearchUser("55555");
+	SearchUser x= new SearchUser("Saeem");
 }
 }
