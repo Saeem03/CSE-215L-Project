@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import memberInfo.LoginGUI;
+import memberInfo.MemberProfGUI;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -15,11 +19,20 @@ import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import java.awt.Button;
+import javax.swing.JMenu;
 
 public class Set_Bills_GUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -46,23 +59,24 @@ public class Set_Bills_GUI extends JFrame {
 	private JButton Bills_Save;
 	private JButton Bills_Edit;
 	private JButton Bills_Cancel;
+	private JMenuBar menuBar;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-		public void run() {
-				try {
-					Set_Bills_GUI frame = new Set_Bills_GUI();
-					frame.getContentPane().setLayout(null);
-					frame.setVisible(true);
-					frame.setLocation(300,300);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	}
-	});
-	}
+//	public static void main(String[] args) {
+//	EventQueue.invokeLater(new Runnable() {
+//		public void run() {
+//				try {
+//					Set_Bills_GUI frame = new Set_Bills_GUI();
+//					frame.getContentPane().setLayout(null);
+//					frame.setVisible(true);
+//					frame.setLocation(300,300);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//	}
+//	});
+//	}
 
 	/**
 	 * Create the frame.
@@ -79,14 +93,14 @@ public class Set_Bills_GUI extends JFrame {
 		
 		
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 0, 0));
+		contentPane.setBackground(new Color(204, 255, 102));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		
 		JLabel lblNewLabel = new JLabel(" Show Bills  :");
-		lblNewLabel.setBackground(SystemColor.inactiveCaption);
+		lblNewLabel.setBackground(new Color(153, 204, 255));
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setBounds(33, 11, 132, 30);
@@ -94,7 +108,7 @@ public class Set_Bills_GUI extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.inactiveCaptionBorder);
-		panel.setBounds(10, 64, 764, 200);
+		panel.setBounds(10, 64, 926, 200);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -220,7 +234,7 @@ public class Set_Bills_GUI extends JFrame {
 		JLabel lblShowFlatInfo = new JLabel(" Show Flat Info  :");
 		lblShowFlatInfo.setOpaque(true);
 		lblShowFlatInfo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblShowFlatInfo.setBackground(SystemColor.inactiveCaption);
+		lblShowFlatInfo.setBackground(new Color(255, 153, 153));
 		lblShowFlatInfo.setBounds(33, 275, 215, 30);
 		contentPane.add(lblShowFlatInfo);
 		
@@ -231,7 +245,7 @@ public class Set_Bills_GUI extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
-		panel_1.setBounds(10, 336, 764, 200);
+		panel_1.setBounds(10, 336, 926, 200);
 		contentPane.add(panel_1);
 		
 		JLabel lblTotalMembers = new JLabel(" Total Members                     :");
@@ -269,33 +283,33 @@ public class Set_Bills_GUI extends JFrame {
 		lblElectricityBillperHead.setBounds(24, 42, 255, 20);
 		panel_1.add(lblElectricityBillperHead);
 		
-		JLabel lblGasBillper = new JLabel("Gas BILL (per head)               :");
-		lblGasBillper.setOpaque(true);
-		lblGasBillper.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblGasBillper.setBackground(SystemColor.inactiveCaptionBorder);
-		lblGasBillper.setBounds(24, 73, 255, 20);
-		panel_1.add(lblGasBillper);
+		JLabel lblGasBillperHead = new JLabel("Gas BILL (per head)               :");
+		lblGasBillperHead.setOpaque(true);
+		lblGasBillperHead.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblGasBillperHead.setBackground(SystemColor.inactiveCaptionBorder);
+		lblGasBillperHead.setBounds(24, 73, 255, 20);
+		panel_1.add(lblGasBillperHead);
 		
-		JLabel lblInternetBillper = new JLabel("Internet BILL (per head)         :");
-		lblInternetBillper.setOpaque(true);
-		lblInternetBillper.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblInternetBillper.setBackground(SystemColor.inactiveCaptionBorder);
-		lblInternetBillper.setBounds(24, 102, 255, 20);
-		panel_1.add(lblInternetBillper);
+		JLabel lblInternetBillperHead = new JLabel("Internet BILL (per head)         :");
+		lblInternetBillperHead.setOpaque(true);
+		lblInternetBillperHead.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblInternetBillperHead.setBackground(SystemColor.inactiveCaptionBorder);
+		lblInternetBillperHead.setBounds(24, 102, 255, 20);
+		panel_1.add(lblInternetBillperHead);
 		
-		JLabel lblInternetBillper_1 = new JLabel("Water BILL (per head)         :");
-		lblInternetBillper_1.setOpaque(true);
-		lblInternetBillper_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblInternetBillper_1.setBackground(SystemColor.inactiveCaptionBorder);
-		lblInternetBillper_1.setBounds(24, 133, 255, 20);
-		panel_1.add(lblInternetBillper_1);
+		JLabel lblWaterBillperHead = new JLabel("Water BILL (per head)         :");
+		lblWaterBillperHead.setOpaque(true);
+		lblWaterBillperHead.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblWaterBillperHead.setBackground(SystemColor.inactiveCaptionBorder);
+		lblWaterBillperHead.setBounds(24, 133, 255, 20);
+		panel_1.add(lblWaterBillperHead);
 		
-		JLabel lblHousekeeperBillper = new JLabel("HouseKeeper Bill (per head)    :");
-		lblHousekeeperBillper.setOpaque(true);
-		lblHousekeeperBillper.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblHousekeeperBillper.setBackground(SystemColor.inactiveCaptionBorder);
-		lblHousekeeperBillper.setBounds(24, 169, 255, 20);
-		panel_1.add(lblHousekeeperBillper);
+		JLabel lblHousekeeperBillperHead = new JLabel("HouseKeeper Bill (per head)    :");
+		lblHousekeeperBillperHead.setOpaque(true);
+		lblHousekeeperBillperHead.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblHousekeeperBillperHead.setBackground(SystemColor.inactiveCaptionBorder);
+		lblHousekeeperBillperHead.setBounds(24, 169, 255, 20);
+		panel_1.add(lblHousekeeperBillperHead);
 		
 		label_6 = new JLabel();
 		label_6.setText("0");
@@ -333,8 +347,10 @@ public class Set_Bills_GUI extends JFrame {
 		});
 		Flat_Cancel.setBounds(633, 74, 89, 23);
 		panel_1.add(Flat_Cancel);
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 974, 600);
 		begin();
 		Flat_Edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -398,10 +414,28 @@ public class Set_Bills_GUI extends JFrame {
 	
 	}
 	});
+	setVisible(true);
 	run();
 	Thread x = new Thread();
 	x.start();
 	x.sleep(500);
+	Button button = new Button("Send All");
+	button.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			String s="Dear User , \n";
+			s+=lblElectricityBillperHead.getText()+"    :"+label_6.getText()+"\n"+lblGasBillperHead.getText()+"    :"+label_7.getText()+"\n"
+					+lblInternetBillperHead.getText()+"    :"+label_9.getText()+"\n"+lblWaterBillperHead.getText()+"    :"+label_10.getText()+"\n"+
+					lblHousekeeperBillperHead.getText()+"    :"+label_11.getText();
+			try {
+				new SendEmailAll("About your Bills", s).sendtoAll();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			};
+		}
+	});
+	button.setBounds(543, 118, 221, 57);
+	panel_1.add(button);
+	button.setFont(new Font("Dialog", Font.BOLD, 15));
 	}
 	public void run()
 	{

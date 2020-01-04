@@ -1,6 +1,10 @@
 package memberInfo;
+
+import managerInfo.Bills;
+
 public class Member {
-	private String name,id,address,gender,password,fName,mName;;
+	private String name,id,address,gender,password,fName,mName,email;
+	static String status;
 	private int age;
 	private double rent;
 	private Bills mBills;
@@ -11,7 +15,7 @@ public class Member {
 
 	}
 	public Member(String name, String id, String address, String gender, String password, String fName, String mName,
-			int age, double rent, Bills mBills) {
+			int age, double rent, Bills mBills,String status) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -23,10 +27,11 @@ public class Member {
 		this.age = age;
 		this.rent = rent;
 		this.mBills = mBills;
+		this.setStatus(status);
 		managerInfo.Rent_And_Room.total_Member++;
 
 	}
-	public Member(String name, String id, String address, String gender, String password, String fName, String mName,int age, double rent, Bills mBills, boolean isLogin) {
+	public Member(String name, String id, String address, String status,String gender, String password, String fName, String mName,int age, double rent, Bills mBills, boolean isLogin) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -39,6 +44,7 @@ public class Member {
 		this.rent = rent;
 		this.mBills = mBills;
 		this.isLogin = isLogin;
+		this.setStatus(status);
 //		managerInfo.Rent_And_Room.total_Member++;
 
 	}
@@ -107,6 +113,18 @@ public class Member {
 	}
 	public void setLogin(boolean isLogin) {
 		this.isLogin = isLogin;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

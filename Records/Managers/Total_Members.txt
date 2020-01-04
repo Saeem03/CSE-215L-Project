@@ -1,2 +1,2 @@
 total_Member
-100
+50

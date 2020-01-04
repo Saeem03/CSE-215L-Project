@@ -1,41 +1,44 @@
 package managerInfo;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-
 public class SendBills {
 		HashMap<String,String> list = new HashMap<>();;
 		HashMap<String,String> readedlist = new HashMap<>();
-		 SendBills()
+		String s=firstRead();
+		 SendBills() throws IOException 
 		{
-			 readBills();
-			 makeList();
-			 writeBills();
-			
+			 readBills();							//taking  all the Bills from the file and putting them  in a list
+			 makeList();							//only individual's Bills are been taken from the list
+			 Runtime runtime = Runtime.getRuntime();
+			 Process process = runtime.exec("Notepad.exe .\\Records\\Member\\Saeem.txt");
 		}
 		public void readBills()
 		{
 			try {
 				
-				Scanner scan = new Scanner(new FileReader("D:\\eclipse-workspace\\Final Project\\Records\\Managers\\TotalBills.txt"));
-				System.out.println("Scanning complete");
+				Scanner scan = new Scanner(new FileReader(".\\Records\\Managers\\TotalBills.txt"));
 				list.put(scan.nextLine(),scan.nextLine());
 				while(scan.hasNext())
 				{
 					try
 					{
-						list.put(scan.nextLine(),scan.nextLine());
+						list.put(scan.nextLine(),scan.nextLine()); 
 					}
 					catch(Exception p)
 					{
 						System.out.println("readBills not working");
 					}
 				}
+				scan.close();
+				//System.out.println(list);
 			}
 			catch(Exception e)
 			{
@@ -59,27 +62,91 @@ public class SendBills {
 		}
 		public void writeBills()
 		{
+			
 			try {
-				FileWriter x = new FileWriter("D:\\eclipse-workspace\\Final Project\\Records\\Managers\\Text.txt");
-				String s="";
+			
+				FileWriter x = new FileWriter(".\\Records\\Managers\\Text.txt",true);
+				BufferedWriter y = new BufferedWriter(x);
 				for(String m:readedlist.keySet()){ 
-					x.write(m+"\n");
-					x.write(readedlist.get(m)+"\n");
-					s+=m+"\n"+readedlist.get(m)+"\n";
-					System.out.println(m+"\n "+readedlist.get(m));    
+					y.write(m+"\n");
+					y.write(readedlist.get(m)+"\n");
 //					System.out.println(s);
+					x.close();
 			}
 				x.close();
 			}
 				catch (IOException e) {
 			}
-				
-			
 		}
+		public void writeBills_toAll()         	//Bills are being sent to all users' record file
 
-	public static void main(String[] args) throws InterruptedException {
-		new SendBills();
+		{
+			try {
+				Scanner scan = new Scanner(new FileReader(".\\Records\\Member\\Member's User_Password.txt"));
+				String name;
+				while(scan.hasNext())
+				{
+					name = scan.nextLine().trim();
+					scan.nextLine();
 
-	}
-	
+					FileWriter x = new FileWriter(".\\Records\\Member\\"+name+".txt");
+					BufferedWriter y = new BufferedWriter(x);
+					y.flush();
+					y.append(this.s);
+					y.flush();
+					for(String m:readedlist.keySet()){ 
+						y.flush();
+						y.append(m);
+						y.flush();
+						y.append("\n");
+						y.flush();
+						y.append(readedlist.get(m));
+						y.flush();
+						y.append("\n");
+						y.flush();
+					}
+					y.close();
+				}
+				System.out.println("Bills were sent");
+				scan.close();
+			}
+			catch (IOException e) {
+				System.out.println("Bills sending interrupted");
+			}
+		}
+		
+		
+		
+		
+		public String firstRead() 
+		{
+			try
+			{
+				
+				File f = new File(".\\Records\\Member\\Saeem.txt");
+				FileReader r = new FileReader(f);
+				BufferedReader buff = new BufferedReader(r);
+				String x="";
+				int i;
+				while((i= buff.read())!=-1)
+				{
+					if((char)i=='!')
+					{
+						x+="\n !  \n";
+						break;
+					}
+					x+=(char)i;
+				}
+				buff.close();
+				return x;
+			}
+			catch(Exception e)
+			{
+				
+				return "";
+			}
+		}
+		
+
+
 }

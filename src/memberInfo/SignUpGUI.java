@@ -8,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -17,8 +18,8 @@ import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
 
 
-public class SignUpGUI extends JFrame {
-	Boolean isHuman=false;
+public class SignUpGUI extends JFrame implements Runnable {
+	Thread p = new Thread(this);
 	JTextField uName;
 	JTextField uId;
 	JTextField uFatherName;
@@ -30,8 +31,10 @@ public class SignUpGUI extends JFrame {
 	ButtonGroup uGender = new ButtonGroup();
 	JRadioButton uMale;
 	JRadioButton uFemale;
+	 JTextField Email;
 	
 	SignUpGUI(){
+		getContentPane().setBackground(new Color(102, 204, 204));
 		
 
 		JLabel a = new JLabel("Name :");
@@ -63,7 +66,7 @@ public class SignUpGUI extends JFrame {
 		uMotherName.setBounds(276,152,458,30);
 		getContentPane().add(uMotherName);
 		a = new JLabel("Address :");
-		a.setBounds(66,278,148,30);
+		a.setBounds(66,192,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		getContentPane().add(a);
 		uAddress = new JTextField("Bashundhara");
@@ -85,52 +88,65 @@ public class SignUpGUI extends JFrame {
 		uPhone.setBounds(276,322,458,30);
 		getContentPane().add(uPhone);
 		a = new JLabel("Gender :");
-		a.setBounds(79,196,148,30);
+		a.setBounds(66,277,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		getContentPane().add(a);
 		uMale = new JRadioButton("Male");
-		uMale.setBounds(340, 272 ,148,40);
+		uMale.setBounds(276, 272 ,212,40);
 		uMale.setFont(new Font("Serif", Font.BOLD, 20));
 		getContentPane().add(uMale);
 		uFemale = new JRadioButton("Female");
-		uFemale.setBounds(517,272,160,40);
+		uFemale.setBounds(517,272,217,40);
 		uFemale.setFont(new Font("Serif", Font.BOLD, 20));
 		getContentPane().add(uFemale);
 		uGender.add(uMale);
 		uGender.add(uFemale);
 		a = new JLabel("Password :");
-		a.setBounds(66,382,148,30);
+		a.setBounds(66,437,148,30);
 		a.setFont(new Font("Serif", Font.BOLD, 20));
 		getContentPane().add(a);
 		uPassword = new JPasswordField("55555");
-		uPassword.setBounds(276,382,458,30);
+		uPassword.setBounds(276,437,458,30);
 		getContentPane().add(uPassword);
 		JButton b1 = new JButton("SignUp");
-		b1.setBounds(474,496,265,70);
+		b1.setBounds(474,547,265,70);
 		b1.setBackground(Color.RED);
 		getContentPane().add(b1);
 		b1.addActionListener(new SignUpHandler());
 		JButton b2 = new JButton("Login");
-		b2.setBounds(216,496,217,70);
+		b2.setBounds(216,547,217,70);
 		b2.setBackground(Color.RED);
 		getContentPane().add(b2);
 		b1.addActionListener(new SignUpHandler());
 		super.setBackground(Color.gray);
 		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Email        :");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setBounds(66, 386, 183, 40);
+		getContentPane().add(lblNewLabel);
+		
+		Email = new JTextField();
+		Email.setText("Saeem03@gmail.com");
+		Email.setBounds(276, 386, 458, 30);
+		getContentPane().add(Email);
+		Email.setColumns(10);
 
 		setVisible(true);
-		setSize(800,700);
+		setSize(975,700);
 		setLocation(400,250);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginGUI y=new LoginGUI(); 
+				new LoginGUI(); 
 			}
 		});
+		p.start();
 	}
 	public class SignUpHandler implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+			
 
 			if(e.getActionCommand().equals("SignUp"))
 			{
@@ -138,22 +154,47 @@ public class SignUpGUI extends JFrame {
 					if(!(uName.getText().isEmpty() || uId.getText().isEmpty() || String.valueOf(uPassword.getPassword()).isEmpty() || uAge.getText().isEmpty() || uGender.getElements().nextElement().getText().isEmpty()))
 					{
 						Controller r = new Controller();
-						r.trySignUp(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()),uFatherName.getText(),uMotherName.getText());
-						System.out.println("File saved");
+						r.trySignUp(uName.getText(),uId.getText(),uAddress.getText(),uGender.getElements().nextElement().getText(),String.valueOf(uPassword.getPassword()),Integer.parseInt(uAge.getText()),uFatherName.getText(),uMotherName.getText(),Email.getText());
 					}
 					else throw  new NecessityMeetException();
 				}
 				catch(Exception e1)
 				{
-					System.err.println("SomeThing Went Wrong");
+					System.err.println(e1);
 				}
 			}
 		}
 
 	}
+	public void run()
+	{
+		System.out.println("What");
+		do {
+			System.out.println("Thread Working");
+			try {
+				Thread.sleep(9000);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			String word =""+uId.getText().trim();
+			char[] s = word.toCharArray();
+			for(int i =0; i<s.length;i++)
+				if((s[i]<'a' || s[i]>'z') && (s[i]<'A' || s[i]>'Z') && (s[i]<'0' ||s[i]>'9'))
+				{				
+					JOptionPane.showMessageDialog(null, "User name contains only numbers and alphabets");
+					try {
+						Thread.sleep(90000);
+					} catch (InterruptedException e) {
+						System.out.println(e);
+					}
+				}
+			
+		}
+		while(p.isAlive());
+	}
+
 	public void Hide()
 	{
 		this.setVisible(false);
 	}
-
 }
