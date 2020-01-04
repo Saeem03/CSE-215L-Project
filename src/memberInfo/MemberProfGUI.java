@@ -112,8 +112,8 @@ public class MemberProfGUI extends JFrame implements Runnable {
 		panel.add(txtField);
 		txtField.setColumns(10);
 		
-		txtField_1 = new JTextField();
-		txtField_1.setText("Blackdot");
+		txtField_1 = new JTextField(user);
+		txtField_1.setText(user);
 		txtField_1.setColumns(10);
 		txtField_1.setBounds(387, 55, 289, 38);
 		panel.add(txtField_1);
@@ -134,7 +134,7 @@ public class MemberProfGUI extends JFrame implements Runnable {
 		Name.setBounds(387, 12, 289, 35);
 		panel.add(Name);
 		
-		JLabel userName = new JLabel("Saeem03");
+		JLabel userName = new JLabel(user);
 		userName.setBounds(387, 55, 289, 35);
 		panel.add(userName);
 		
@@ -147,8 +147,13 @@ public class MemberProfGUI extends JFrame implements Runnable {
 		panel.add(seat);
 		
 		 Edit1 = new JButton("Edit");
+		 System.out.println(LoginGUI.status);
+		 Edit1.setBounds(799, 12, 100, 25);
 		 if(LoginGUI.status.equals("Member"))
+		 {
+			 System.out.println("WPPPPPPPPPPPPP");
 			 Edit1.setVisible(false);
+		 }
 		 
 		Edit1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -157,7 +162,6 @@ public class MemberProfGUI extends JFrame implements Runnable {
 				
 			}
 		});
-		Edit1.setBounds(799, 12, 100, 25);
 		panel.add(Edit1);
 		
 		 Save1 = new JButton("Save");
@@ -329,6 +333,8 @@ public class MemberProfGUI extends JFrame implements Runnable {
 		hidingTextFields3(false);
 		MakeList(UserName);
 		readData();
+		txtField_1.setText(user);
+		userName.setText(user);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1150, 875);
 		setVisible(true);
