@@ -1,4 +1,4 @@
-# CSE-215L-Project
+# Meal Management System
 CSE-215L course project
 
 It is one of my first built UI based desktop based application.
